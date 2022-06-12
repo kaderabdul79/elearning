@@ -40,6 +40,12 @@
                   <p>Category</p>
                 <router-link>
               </li>
+              <li class="nav-item">
+                <router-link to="/add_category" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Category</p>
+                <router-link>
+              </li>
               {{--  --}}
             </ul>
           </li>

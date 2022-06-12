@@ -6,7 +6,7 @@
         <div class="col-md-8">
         <div class="card-header" style="margin-top: 50px;"><h2>Category List</h2>
             <div class="text-right">
-                <router-link to="" class="btn btn-xl btn-primary "><i class="fas fa-add">Add</i></router-link> 
+                <router-link to="add_category" class="btn btn-xl btn-primary "><i class="fas fa-add">Add</i></router-link> 
             </div>
         </div>
         <div class="card-body">

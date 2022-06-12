@@ -16,8 +16,14 @@ Vue.component('admin-master', require('./components/admin/adminmaster.vue').defa
 import { routes } from './routes';
 
   const router = new VueRouter({
-    routes // short for `routes: routes`
+    routes, // short for `routes: routes`
+    // mode: 'history'
+    mode: 'hash'
   })
+
+//   
+import {Form , HasError, AlertError} from 'vform'
+window.Form = Form;
 
 const app = new Vue({
     el: '#app',
