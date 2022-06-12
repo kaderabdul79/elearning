@@ -6,8 +6,36 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
+// sweetalert2
+import Swal from 'sweetalert2'
+window.Swal = Swal;
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
+  Window.Toast = Toast;
+
+// sweetalert2 end
+
+// vueX
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+import storeInfo from './store/store'
+
+const store = new Vuex.Store(storeInfo)
+
+  
+// vueX end
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 // my component
 Vue.component('admin-master', require('./components/admin/adminmaster.vue').default);
@@ -27,5 +55,6 @@ window.Form = Form;
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });
