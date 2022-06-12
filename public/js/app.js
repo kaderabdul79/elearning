@@ -5561,7 +5561,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'List',
+  mounted: function mounted() {
+    this.$store.dispatch('getCategoryList');
+  },
+  computed: {
+    getCategoryList: function getCategoryList() {
+      console.log(this.$store.getters.categoryList);
+      return this.$store.getters.categoryList;
+    }
+  }
+});
 
 /***/ }),
 
@@ -5958,11 +5970,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  state: {},
-  methods: {},
-  mutations: {},
-  actions: {}
+  state: {
+    category: []
+  },
+  getters: {
+    categoryList: function categoryList(state) {
+      return state.category;
+    }
+  },
+  actions: {
+    getCategoryList: function getCategoryList(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/categoryList').then(function (response) {
+        context.commit('categoryList', response.data.categoryList);
+      });
+    }
+  },
+  mutations: {
+    categoryList: function categoryList(state, responseData) {
+      return state.category = responseData;
+    }
+  }
 });
 
 /***/ }),
@@ -33038,37 +33069,52 @@ var render = function () {
                 _c("table", { staticClass: "table" }, [
                   _vm._m(0),
                   _vm._v(" "),
-                  _c("tbody", [
-                    _c("tr", { staticStyle: { "margin-top": "350px" } }, [
-                      _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Film")]),
-                      _vm._v(" "),
-                      _c(
-                        "td",
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.getCategoryList, function (categoryList, index) {
+                      return _c(
+                        "tr",
+                        {
+                          key: categoryList.id,
+                          staticStyle: { "margin-top": "350px" },
+                        },
                         [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-xs btn-info",
-                              attrs: { to: "" },
-                            },
-                            [_c("i", { staticClass: "fas fa-edit" })]
-                          ),
+                          _c("th", { attrs: { scope: "row" } }, [
+                            _vm._v(_vm._s(index)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(categoryList.category_name)),
+                          ]),
                           _vm._v(" "),
                           _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-xs btn-danger",
-                              attrs: { to: "" },
-                            },
-                            [_c("i", { staticClass: "fas fa-trash" })]
+                            "td",
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "btn btn-xs btn-info",
+                                  attrs: { to: "/" },
+                                },
+                                [_c("i", { staticClass: "fas fa-edit" })]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "btn btn-xs btn-danger",
+                                  attrs: { to: "/" },
+                                },
+                                [_c("i", { staticClass: "fas fa-trash" })]
+                              ),
+                            ],
+                            1
                           ),
-                        ],
-                        1
-                      ),
-                    ]),
-                  ]),
+                        ]
+                      )
+                    }),
+                    0
+                  ),
                 ]),
               ]),
             ]),
